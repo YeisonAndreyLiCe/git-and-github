@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git and GitHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100&family=Noto+Sans:wght@100&family=Roboto:wght@100&family=Rubik:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1> Git and GitHub</h1>
+
+    <h2>Initial Considerations</h2>
+    <p>
+        <code>pwd</code> can be used to visualize the directory where you are.
+    </p>
+    <p>
+        When in the git bush console use <code>cd</code> <span class="sig">(change directory)</span>
+        to move between directories.
+    </p>
+    <p>
+        You can use <code>ls</code> <span class="sig">(list)</span> to view the folder and files in your current directory.
+    </p>
+    <p>
+        To created a folder use <code>mkdir <i>{folderName}</i> </code><span class="sig"> (make directory)</span>
+    </p>
+    <p>
+        If you want to created a file, use <code>touch <i>{fileName.extension}</i></code>
+    </p>
+    <p>
+        Use <code>cat</code> to see the content of an file.
+    </p>
+    <p>
+        To open a file in visual studio code use <code>code <i>{fileName.extension}</i></code>.
+    </p>
+    <p>
+        To <span class="sig">configure the git bash</span> use <code>git config --global user.name "<i>{write your name here}</i>"</code> <br>
+        Use <code>git config --global user.email "<i>{write the email address of your github account}</i>"</code>
+    </p>
+    <hr>
+    <h2>Initializing Local Repositories</h2>
+    <p>
+        When starting a project use <code>git init</code> to initialize a local repository. You have to be in the folder where you want to create the local repository.
+    </p>
+    <p>
+        If you want to check what just happened after <code>git init</code> you can use <code>ls -al</code> to see all files (including the hidden ones). This command will list the files in your current directory. If you have already initialized a local repository with <code>git init</code> in your current directory by running the <code>ls -al</code> command you should see a <strong>.git/</strong> directory in the list.
+    </p>
+    <p>
+        When running <code>git init</code> the <span class="concepts">staging area</span> is created in your computer's RAM. There, all changes will be prepared for submission to the local repository, in this area the files start to being tracked. The local repository where the project files will be stored is also created.
+    </p>
+    <p>
+        When working with local repositories there are three phases in the development environment:
+    </p>
+    <ul>
+        <li> 
+            <span class="concepts">Working Directory:</span> : in this area your files area untracked. To sent a file you have created to next phase use <code>git add <i>{fileName.extension} </i></code> If you have recently created several files and you want to send all of them to staging area use <code>git add .</code>. Since "." make reference to your current directory it is like send all the files to the staging area phase where file tracking begins.
+        </li>
+        <li>
+            <span class="concepts">Staging Directory:</span> In this area the tracking of the files is started and the files are ready to be sent to the local repository area running <code>git commit -m <i>"{message}"</i></code>.
+        </li>
+        <li>
+            <span class="concepts">Local Repository:</span>  Here is the latest version of your branch into your local repository. You have to check that your branch version contain all commit made to the branch in the remote repository, so you need to run <code>git merge</code> and then <code>git fetch</code> before sending the changes to te remote repository; That would be the process in two stages. You can update your local branch in only one stage by using <code>git pull origin <i>{branchName}</i></code>. If there is nothing to change in your branch, you can push the changes to the remote repository by running <code>git push -u origin <i>{branchName}</i></code>.
+        </li>
+    </ul> 
+    <hr>
+    <p>
+        <code>git clone <i>url</i></code> to clone a repository in your local machine.
+    </p>
+    <p>
+        You can check the git phase by using <code>git status</code>
+    </p>
+    <p>
+        If you added some path by mistake, you can remove it using <code>git rm --cached</code>
+        If it does not work, use <code>git rm -f --cached <i>{file_name.extension}</i></code>
+    </p>
+    <p>
+        To send the files or updated changes use <code>git commit -m "<i>{message}</i>"</code>
+    </p>
+    <p>
+        To see the history of an archive use <code>git log file_name.extension</code>
+    </p>
+    <p>
+        To see the changes in a file use <code>git show fileName.extension</code>
+    </p>
+    <p>
+        to see differences between versions use <code>git diff IDcommit1 IDcommit2 </code>
+    </p>
+    <p>
+        To start writing press <span class="keyword">Esc + i</span>
+        To go out of <span class="vim">vim</span> press at once <span class="keyword">Esc + Shift + z + z</span>
+    </p>
+    
+    <p>
+        <code>git log --stat</code> to see specific changes.
+    </p>
+    <p>Q</p>
+
+    
+    <h1>Restoring changes</h1>
+    <p>
+        <code>checkout <i>commitID</i></code> is used to created branches or go back to a previous version conserving commits.the commit ID makes reference to the ID commit where you want to go back.
+    </p>
+    <p>
+        <code>git reset</code> not only goes back in the changes but also deletes all the subsequent commits. it will deleted all te changes done after commitID (including commits) <br>
+        <code>git reset <i>commitID</i></code>. <code>git reset <i>commitID</i> --soft </code>: deletes changes until staging area. <br>
+        <code>git reset <i>commitID</i> --mixed </code>: deleted changes until working area (untracked area). <br>
+        <code>git reset <i>commitID</i> --hard </code>:go back until commitID information. <br>
+        <code>git reset head</code>: takes out the files of staging area. We can use <code>git add .</code> to sent back the files to the staging area.
+    </p>
+    <p>
+        <code>git rm --cached</code>: deletes files from our staging area and conserves them in the hard disc. <br>
+        <code>git rm --force</code>: deletes completely the file. It is possible go towards the existing files register.
+    </p>
+
+    <p>
+        master or main is your principal branch.
+    </p>
+    <p>
+        <span class="concepts">merge</span> merging changes between branches.
+    </p>
+    <p>
+        when merging changes between branches it is possible the raise of conflicts.
+    </p>
+    <p>rm -rf .git</p>
+    <h1>Branches</h1>
+    <p>To create a branch use <code>git branch <i>branch_name</i> </code></p>
+    <p>To change between branches use <code>git checkout branch_name</code></p>
+    <p>When you add changes in a branch is and you want to change of branch you have to adding and commit that changes before change of branch-if not you could miss your changes</p>
+    <p>It is a good practice to update your local repository before sending changes to remote repository (before <code>git push</code>) so you should first run <code>git pull origin <span class="codespan">{branchName}</span></code>. Once your local repository be updated you must solve conflicts if exist and after send changes <code>git push</code></p> 
+    <h1>
+        Public and Private Keys--asymmetric one-way encryption
+    </h1>
+    <p>
+        powerful 
+        password cracking.
+        ssh protocole
+
+    </p>
+    <code>Git show</code>
+    <p>
+        To see the commits made we use: <code>git log</code>
+    </p>
+    <p>
+        To see all the commits use: <code>git log --all</code>
+    </p>
+    <p>git branch</p>
+    <p>
+        When merging branches you must check that you are than the branch where you want to do the merge and use the
+        command:
+        <code>git merge branch1 -m "message"</code>
+    </p>
+    <code>git remote add origin {url}</code>>
+    <code>git remote</code>
+    <code>git remote -v</code>
+    <code>git pull origin branchName</code>
+    <code>git push origin branchName</code>
+    <code>git config -l</code>
+
+    <h1>Generating SSH Keys</h1>
+    <p>
+        to generate ssh key visit: <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"></a> Adding a new SSH key to your GitHub account
+    </p>
+    <p>After generating ssh keys set the url asociated to the remote repository</p>
+    <code>git remote set-url origin {url}</code>
+
+    <code>git diff</code>
+    <p>use <code>git log --all --graph</code> to see the flow through the branches</p>
+    <p>
+        to a better visualization use:
+        <code>git log --all --graph --decorated --online</code>
+    </p>
+    <p>
+        to assign alias use:
+        <code>alias {assignedName}="{command}"</code>
+    </p>
+    <h1>Labels</h1>
+    <p>to created a label use</p>
+    <code>git tag -a {label} -m "{message}" {commitIDassociated}</code>
+    <code>git show-ref --tags</code>
+    <code>history</code>
+    <code>git push origin --tags</code>
+    <code>git tag</code>
+    <p>to see labels</p>
+    <code>git tag -d {labelName}</code>
+    <p>delete a label in our local repository</p>
+    <p>to delete a tag in github from git bush, after using <code>git tag -d {labelName}</code> use:
+        <code>git push origin :refs/tags/{labelName}</code>
+    </p>
+    <p>to edit files from the console use <code>vim {file_name}</code></p>
+    <p>staging server</p>
+    <p>feature branch</p>
+    <p>tow branches in parallel</p>
+    <p>pull request</p><p>DEVops</p>
+    <p>fix typo</p>
+    <p>Entidades HTML: para tíldes. <code>&{a}acute;</code> </p>  
+    <h2>fork: bifurcaciones</h2>
+    <p>stash</p>
+    <p>auto request to update a fork or copy the url and in the terminal running <code>git remote add {Name(upstream)} {url}</code></p>
+    <p><code>git pull {upstream} {master}</code></p>
+    <p>
+        .gitignore
+    </p>
+    <p>
+        rebase: only for local repositories.
+    </p>
+    <code>git rebase master. It changes the hystory of the branch</code>
+
+</body>
+</html>
